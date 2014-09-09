@@ -1,0 +1,158 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Main"
+    },
+    "name": "MyController",
+    "designerId": "3c35e2f2-489f-4bb9-a033-fb7cf3590853",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "filterField",
+                "selector": "searchfield#searchfield"
+            },
+            "name": "filterField",
+            "designerId": "1a770921-8068-4a74-8a8b-116029edd8af"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "filterField",
+                "designer|targetType": "Ext.field.Search",
+                "fn": "onFilterFieldKeyup",
+                "implHandler": [
+                    "if (e.event.keyCode == 13) {",
+                    "  this.onSearch(textfield.getValue());",
+                    "}"
+                ],
+                "name": "keyup"
+            },
+            "name": "onFilterFieldKeyup",
+            "designerId": "2ad45aeb-72e5-4107-9d1e-323e65df7b11"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "filterField",
+                "designer|targetType": "Ext.field.Search",
+                "fn": "onFilterFieldChange",
+                "implHandler": [
+                    "this.onSearch(newValue);"
+                ],
+                "name": "change"
+            },
+            "name": "onFilterFieldChange",
+            "designerId": "db1b079a-7d28-41c9-aa82-9f4517e9bc81"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "searchterm"
+                ],
+                "fn": "onSearch",
+                "implHandler": [
+                    "var baseUrl = \"http://api.yelp.com/business_review_search\";",
+                    "",
+                    "var stores = [",
+                    "    {",
+                    "        store: Ext.getStore('Hotels'),",
+                    "        term: 'hotels' ",
+                    "    },",
+                    "    {",
+                    "        store: Ext.getStore('Restaurants'),",
+                    "        term: 'eat'",
+                    "    }, ",
+                    "    {",
+                    "        store: Ext.getStore('Shops'),",
+                    "        term: 'shops'",
+                    "    }",
+                    "];",
+                    "",
+                    "for (var i=0; i<stores.length; i++) {",
+                    "    stores[i].store.setProxy({",
+                    "        type: 'jsonp',",
+                    "        url: baseUrl,",
+                    "        extraParams: {",
+                    "            location: searchterm,",
+                    "            ywsid: 'k1Wfd6Rrfj9a8BNRUaG61Q',",
+                    "            term: stores[i].term",
+                    "        },",
+                    "        reader: {",
+                    "          type: 'json',",
+                    "          rootProperty: 'businesses'",
+                    "        }",
+                    "    });",
+                    "    stores[i].store.load();",
+                    "}"
+                ]
+            },
+            "name": "onSearch",
+            "designerId": "35b78d6e-0264-409c-92ed-98d79cd06aa7"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "businesslist",
+                "designer|targetType": "Ext.dataview.List",
+                "fn": "onBusinessTap",
+                "implHandler": [
+                    "this.getMainNavView().push({",
+                    "    xtype: 'maps',",
+                    "    title: record.get('name'),",
+                    "    lat: record.get('latitude'),",
+                    "    lng: record.get('longitude')",
+                    "});"
+                ],
+                "name": "itemtap"
+            },
+            "name": "onBusinessTap",
+            "designerId": "4dd51725-f722-46a1-8050-538e447f0f94"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainNavView",
+                "selector": "navigationview#mynavigationview"
+            },
+            "name": "mainNavView",
+            "designerId": "aaba0b5e-8a8f-481f-ab43-4857b4801dbe"
+        }
+    ]
+}

@@ -1,0 +1,113 @@
+{
+    "type": "Ext.tab.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|animation": "flip",
+        "designer|userAlias": "main",
+        "designer|userClassName": "Main"
+    },
+    "name": "MyTabPanel",
+    "designerId": "2426cbde-7c68-4699-88ad-4df736a55a64",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "iconCls": "home",
+                "title": "Hotels"
+            },
+            "name": "businesslist",
+            "designerId": "d02e2f7f-318d-4157-9236-529b7e5cd1d9",
+            "masterInstanceId": "afc48a77-8a60-4f7b-abcd-a4f4267c5278"
+        },
+        {
+            "type": "Ext.tab.Bar",
+            "reference": {
+                "name": "tabBar",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "bottom"
+            },
+            "name": "MyTabBar",
+            "designerId": "d48e669c-c520-4df9-9f25-96065f2ed1b1"
+        },
+        {
+            "type": "Ext.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|pack": "center",
+                "docked": "top"
+            },
+            "name": "MyToolbar",
+            "designerId": "a4899bbb-2b50-49c4-85a9-0ef2802ef5c4",
+            "cn": [
+                {
+                    "type": "Ext.field.Search",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "searchfield",
+                        "label": null,
+                        "layout|flex": 1,
+                        "placeHolder": "Search",
+                        "value": [
+                            "Washington, DC"
+                        ],
+                        "width": null
+                    },
+                    "name": "MySearchField",
+                    "designerId": "f54ede2f-0114-4cbe-aeea-33891c389a49"
+                }
+            ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "iconCls": "favorites",
+                "store": "Restaurants",
+                "title": "Restaurants"
+            },
+            "name": "businesslist1",
+            "designerId": "b651a5f0-1f01-454f-8440-9da548719077",
+            "masterInstanceId": "afc48a77-8a60-4f7b-abcd-a4f4267c5278"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "iconCls": "time",
+                "store": "Shops",
+                "title": "Shopping"
+            },
+            "name": "businesslist2",
+            "designerId": "7e44b632-9c2b-4b84-b9bb-9dbc1e1927cc",
+            "masterInstanceId": "afc48a77-8a60-4f7b-abcd-a4f4267c5278"
+        }
+    ]
+}

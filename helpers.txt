@@ -1,0 +1,55 @@
+NOTE: You must first create a YELP account and then request an API key from 
+http://www.yelp.com/developers. 
+
+Replace the text [Insert Yelp Key here] with your Yelp ID.
+
+
+Business Store URL:
+http://api.yelp.com/business_review_search?ywsid=[Insert Yelp Key here]&term=hotels&location=Washington DC
+
+Restaurants Store URL:
+http://api.yelp.com/business_review_search?ywsid=[Insert Yelp Key here]&term=eat&location=Washington DC
+
+Shops Store URL:
+http://api.yelp.com/business_review_search?ywsid=[Insert Yelp Key here]&term=shops&location=Washington DC
+
+Item Template:
+<img class="photo" src="http://src.sencha.io/40/{photo_url}" style="margin-right: 5px" align="left" />
+{name}<br />
+<img src="{rating_img_url_small}" />&nbsp;<small>{address1}</small>
+
+Controller Function:
+
+var baseUrl = "http://api.yelp.com/business_review_search";
+
+var stores = [
+    {
+        store: Ext.getStore('Hotels'),
+        term: 'hotels'
+    },
+    {
+        store: Ext.getStore('Restaurants'),
+        term: 'eat'
+    },
+    {
+        store: Ext.getStore('Shops'),
+        term: 'shops'
+    }
+];
+
+for (var i=0; i<stores.length; i++) {
+    stores[i].store.setProxy({
+        type: 'jsonp',
+        url: baseUrl,
+        extraParams: {
+            location: searchterm,
+            ywsid: '[Insert Yelp Key here]',
+            term: stores[i].term
+        },
+        reader: {
+          type: 'json',
+          rootProperty: 'businesses'
+        }
+    });
+    stores[i].store.load();
+}

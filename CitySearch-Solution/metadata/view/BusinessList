@@ -1,0 +1,40 @@
+{
+    "type": "Ext.dataview.List",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "businesslist",
+        "designer|userClassName": "BusinessList",
+        "html": null,
+        "itemId": "mylist6",
+        "store": "Hotels"
+    },
+    "name": "MyList",
+    "designerId": "afc48a77-8a60-4f7b-abcd-a4f4267c5278",
+    "cn": [
+        {
+            "type": "Ext.XTemplate",
+            "reference": {
+                "name": "itemTpl",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "itemTpl",
+                "implHandler": [
+                    "<img class=\"photo\" ",
+                    "     src=\"{photo_url}\"",
+                    "     align=\"left\" style=\"width: 40px; height: 40px; margin-right: 5px\"/> ",
+                    "{name}<br/>",
+                    "<img src=\"{rating_img_url_small}\"/>&nbsp;",
+                    "<small>{address1}</small>"
+                ]
+            },
+            "name": "itemTpl",
+            "designerId": "0d435712-126d-48c9-a627-e212c44fee87"
+        }
+    ]
+}

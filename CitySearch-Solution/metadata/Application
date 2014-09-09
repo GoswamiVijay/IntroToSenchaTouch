@@ -1,0 +1,33 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "Main"
+        ],
+        "models": [
+            "Business"
+        ],
+        "name": "CitySearch",
+        "requires": [
+            "CitySearch.override.Flip"
+        ],
+        "stores": [
+            "Hotels",
+            "Restaurants",
+            "Shops"
+        ],
+        "views": [
+            "Main",
+            "BusinessList",
+            "MainNavView",
+            "Map"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application"
+}

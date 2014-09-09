@@ -1,0 +1,46 @@
+{
+    "type": "jsonpstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "designer|userClassName": "Shops",
+        "model": "Business",
+        "storeId": "Shops"
+    },
+    "name": "Restaurants1",
+    "designerId": "2d06c577-9323-4e53-a354-3ce02def702d",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.JsonP",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "http://api.yelp.com/business_review_search?ywsid=k1Wfd6Rrfj9a8BNRUaG61Q&term=shops&location=Washington DC"
+            },
+            "name": "MyJsonPProxy",
+            "designerId": "c07786a7-d5a8-43aa-b30b-97db5e7db8e4",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "rootProperty": "businesses"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "c763705f-700b-402e-82f5-852f633f7bf2"
+                }
+            ]
+        }
+    ]
+}

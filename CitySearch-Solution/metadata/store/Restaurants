@@ -1,0 +1,46 @@
+{
+    "type": "jsonpstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "designer|userClassName": "Restaurants",
+        "model": "Business",
+        "storeId": "Restaurants"
+    },
+    "name": "Hotels1",
+    "designerId": "b38220aa-428d-4ee0-a14a-a490fe891df7",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.JsonP",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "http://api.yelp.com/business_review_search?ywsid=k1Wfd6Rrfj9a8BNRUaG61Q&term=eat&location=Washington DC"
+            },
+            "name": "MyJsonPProxy",
+            "designerId": "b0865f4c-7ed0-4e7b-902c-25f53711fcb2",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "rootProperty": "businesses"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "f1c427e7-cfc5-4060-a89b-d83610638ba1"
+                }
+            ]
+        }
+    ]
+}

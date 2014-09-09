@@ -1,0 +1,46 @@
+{
+    "type": "jsonpstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "designer|userClassName": "Hotels",
+        "model": "Business",
+        "storeId": "Hotels"
+    },
+    "name": "MyJsonPStore",
+    "designerId": "45079993-af28-4790-b197-ae55986c4e6d",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.JsonP",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "http://api.yelp.com/business_review_search?ywsid=k1Wfd6Rrfj9a8BNRUaG61Q&term=hotels&location=Washington DC"
+            },
+            "name": "MyJsonPProxy",
+            "designerId": "cc77a87b-2c15-4362-b275-386404448005",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "rootProperty": "businesses"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "4801d671-da4a-4e80-bf80-db44482616e1"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "type": "Ext.navigation.View",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|animation": "fade",
+        "designer|initialView": true,
+        "designer|userClassName": "MainNavView",
+        "itemId": "mynavigationview"
+    },
+    "name": "MyNavigationView",
+    "designerId": "3c9a0dea-4c2f-4d87-ab58-9101c5c358e9",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "CitySearch"
+            },
+            "name": "main",
+            "designerId": "a8138209-97ff-462e-8094-10acb3fda3ee",
+            "masterInstanceId": "2426cbde-7c68-4699-88ad-4df736a55a64"
+        }
+    ]
+}

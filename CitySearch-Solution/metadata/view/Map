@@ -1,0 +1,813 @@
+{
+    "type": "Ext.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "address": "",
+        "container|animation": "flip",
+        "designer|userAlias": "maps",
+        "designer|userClassName": "Map",
+        "lat": "",
+        "layout": "card",
+        "linkId": "launchexternalguidancelink",
+        "lng": "",
+        "requires": [
+            "Ext.MessageBox"
+        ],
+        "title": ""
+    },
+    "name": "Map",
+    "designerId": "9925ecf2-98dc-4623-8749-47de91b8d30f",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "lat",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "lng",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "address",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "linkId",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "Ext.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|pack": "center",
+                "docked": "top",
+                "itemId": "mapstoolbar"
+            },
+            "name": "MyToolbar6",
+            "designerId": "e7bf4d51-b3f7-4be5-bb19-99c39a621971",
+            "cn": [
+                {
+                    "type": "Ext.SegmentedButton",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|pack": null,
+                        "itemId": "mapsviewcontrol"
+                    },
+                    "name": "MySegmentedButton3",
+                    "designerId": "9141d7f5-6fe0-4582-b110-ed962f6883b7",
+                    "cn": [
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "pressed": true,
+                                "text": "Map"
+                            },
+                            "name": "MyButton9",
+                            "designerId": "6d8d3aa5-385f-472b-8a94-d7663dc6847f",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "event"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "button.up('maps').setActiveItem(0);"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "1a262688-4a5e-41cc-8985-43deb5f7e046"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "text": "Directions"
+                            },
+                            "name": "MyButton10",
+                            "designerId": "3d1c27af-f90b-495d-9e3a-09979b38e7c5",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "event"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "Ext.Viewport.setMasked({ xtype: 'loadmask', indicator: true, message: 'Please Wait ...'});",
+                                            "",
+                                            "var top = button.up('maps');",
+                                            "var pos = new google.maps.LatLng(top.getLat(),top.getLng());",
+                                            "var me = top;",
+                                            "",
+                                            "top.getCurrentPosition(function(currentLoc) {",
+                                            "",
+                                            "",
+                                            "    me.currentLocation = currentLoc;",
+                                            "",
+                                            "    var directionsService = new google.maps.DirectionsService();",
+                                            "",
+                                            "",
+                                            "    // kill old directions",
+                                            "    if (me.directionsRenderer)",
+                                            "    me.directionsRenderer.setMap(null);",
+                                            "",
+                                            "    me.directionsRenderer = new google.maps.DirectionsRenderer({",
+                                            "        'map': top.down('map').getMap(),",
+                                            "        'preserveViewport':true,",
+                                            "        'draggable':false",
+                                            "    });",
+                                            "",
+                                            "    // clear directions view",
+                                            "",
+                                            "    document.getElementById(\"turnByTurnDirections\").innerHTML = \"\";",
+                                            "    me.directionsRenderer.setPanel(document.getElementById(\"turnByTurnDirections\"));",
+                                            "",
+                                            "    var end = new google.maps.LatLng(top.getLat(), top.getLng());",
+                                            "",
+                                            "    var request = {",
+                                            "        origin:currentLoc,",
+                                            "        destination:end,",
+                                            "        travelMode:me.directionsMode",
+                                            "    };",
+                                            "",
+                                            "    directionsService.route(request, function (response, status) {",
+                                            "        if (status == google.maps.DirectionsStatus.OK) {",
+                                            "            me.directionsRenderer.setDirections(response);",
+                                            "            me.directionsResponse = response;",
+                                            "            Ext.Viewport.setMasked(false);",
+                                            "            top.setActiveItem(1);",
+                                            "        } else {",
+                                            "            Ext.Viewport.setMasked(false);",
+                                            "            Ext.Msg.alert(\"Error\", \"Could not determine directions. Please enable your GPS\");",
+                                            "        }",
+                                            "    });",
+                                            "});",
+                                            "",
+                                            ""
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "acb67e33-6f5d-463b-be10-c8f285fbd69f"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "text": "Street View"
+                            },
+                            "name": "MyButton11",
+                            "designerId": "17d11e00-6cf4-4482-8bd1-d403a7725407",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "event"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "// Ext.Viewport.setMasked({ xtype: 'loadmask', indicator: true, message: 'Please Wait ...'});",
+                                            "",
+                                            "var findNearest = true; // only use if lat/lng is \"questionable\"",
+                                            "var top = button.up('maps');",
+                                            "var webService = new google.maps.StreetViewService();",
+                                            "var pos = new google.maps.LatLng(top.getLat(),top.getLng());",
+                                            "var domObj = document.getElementById('streetview');",
+                                            "",
+                                            "",
+                                            "if (!findNearest) {",
+                                            "     var panoramaOptions = {",
+                                            "         addressControl:true,",
+                                            "         // position:panoData.location.latLng,",
+                                            "         position: pos,",
+                                            "         pov:{",
+                                            "             heading:290,",
+                                            "             pitch:0,",
+                                            "             zoom:1",
+                                            "         }",
+                                            "     };",
+                                            "    var myPano = new google.maps.StreetViewPanorama(domObj, panoramaOptions);",
+                                            "    top.setActiveItem(2);",
+                                            "} else {",
+                                            "    /**Check in a perimeter of 10 meters**/",
+                                            "    var checkaround = 20;",
+                                            "",
+                                            "    webService.getPanoramaByLocation(pos, checkaround, function (panoData) {",
+                                            "        Ext.Viewport.setMasked(false);",
+                                            "        if (panoData) {",
+                                            "            if (panoData.location) {",
+                                            "                if (panoData.location.latLng) {",
+                                            "                    var panoramaOptions = {",
+                                            "                        addressControl:true,",
+                                            "                        position:panoData.location.latLng,",
+                                            "                        pov:{",
+                                            "                            heading:290,",
+                                            "                            pitch:0,",
+                                            "                            zoom:1",
+                                            "                        }",
+                                            "                    };",
+                                            "                    var myPano = new google.maps.StreetViewPanorama(domObj, panoramaOptions);",
+                                            "                }",
+                                            "            }",
+                                            "        } else {",
+                                            "            Ext.Msg.alert(\"Not Available\", \"Street View is not available for this location\");",
+                                            "        }",
+                                            "     });",
+                                            "    top.setActiveItem(2);",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "e5726700-a62d-4e82-85ed-b0b284363595"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "text": "Navigate"
+                    },
+                    "name": "MyButton12",
+                    "designerId": "24cbab51-19b4-4923-be45-03baaf270e19",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "event"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "//Should work, needs testing on actual mobile devices",
+                                    "var top = button.up('maps');",
+                                    "var lat = top.getLat();",
+                                    "var lng = top.getLng();",
+                                    "var title = top.getTitle();",
+                                    "var mapUrl = 'http://maps.google.com/maps?z=15&t=m&q=loc:' +",
+                                    "lat + '+' + lng;",
+                                    "",
+                                    "top.openLinkInNewWindow(mapUrl);"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "63b2144f-14d0-4119-a7fd-1a6abc7e105f"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.Map",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "mymap"
+            },
+            "name": "MyMap",
+            "designerId": "8ae0a5bc-fb45-4418-a3b3-ba5c4293a1eb",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onMyMapRender",
+                        "implHandler": [
+                            "var top = map.up('maps');",
+                            "",
+                            "var pos = new google.maps.LatLng(top.getLat(),top.getLng());",
+                            "",
+                            "map.setMapOptions({",
+                            "    zoom: 15,",
+                            "    mapTypeId: google.maps.MapTypeId.ROADMAP,",
+                            "    navigationControl: true,",
+                            "    navigationControlOptions: {",
+                            "        style: google.maps.NavigationControlStyle.DEFAULT",
+                            "    },",
+                            "    center: pos",
+                            "});",
+                            "",
+                            "",
+                            "this.centerMap(map.getMap(),pos,top.getTitle(),'');",
+                            "",
+                            "// this shouldn't be required...and yet there's clearly",
+                            "// some sort of race condition going on...",
+                            "// so re-center after 1 second",
+                            "Ext.defer(",
+                            "  function(map,lat,lng) {",
+                            "    map.setMapCenter({",
+                            "        latitude: lat,",
+                            "        longitude: lng",
+                            "    });",
+                            "  }, ",
+                            "    1000,",
+                            "    this,",
+                            "    [map,top.getLat(),top.getLng()]",
+                            " );",
+                            "",
+                            "Ext.Viewport.setMasked(false);"
+                        ],
+                        "name": "maprender"
+                    },
+                    "name": "onMyMapRender",
+                    "designerId": "3b12ff90-16e4-4e44-a41c-3fecc8de2626"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "html": "<div id=\"turnByTurnDirections\"></div>",
+                "itemId": "directions",
+                "scrollable": true
+            },
+            "name": "MyContainer1",
+            "designerId": "810f8c23-d588-48cc-bc18-677ab0d78dce"
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "streetview"
+            },
+            "name": "MyContainer2",
+            "designerId": "68a9457f-e7fd-4768-a120-cdd3610331b6"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initialize",
+                "implHandler": [
+                    "this.callParent(arguments);\r",
+                    "\r",
+                    "this.directionsMode = google.maps.DirectionsTravelMode.DRIVING;\r",
+                    "\r",
+                    "Ext.Viewport.setMasked({ xtype: 'loadmask', indicator: true, message: 'Please Wait ...'});\r",
+                    ""
+                ]
+            },
+            "name": "initialize",
+            "designerId": "fa6b6bc9-47e4-40ec-87f3-ee8639068e7d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "lat1",
+                    "lng1",
+                    "lat2",
+                    "lng2"
+                ],
+                "fn": "calcDistance",
+                "implHandler": [
+                    " var R = 6371;",
+                    "// km",
+                    "var dLat = this.toRad((lat2 - lat1));",
+                    "var dLon = this.toRad(lng2 - lng1);",
+                    "var lat1 = this.toRad(lat1);",
+                    "var lat2 = this.toRad(lat2);",
+                    "",
+                    "var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);",
+                    "var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));",
+                    "var d = R * c;",
+                    "",
+                    "return d;"
+                ]
+            },
+            "name": "calcDistance",
+            "designerId": "c238f985-b3ab-4d30-9485-6587644008e3"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "num"
+                ],
+                "fn": "toRad",
+                "implHandler": [
+                    "return num * Math.PI / 180;"
+                ]
+            },
+            "name": "toRad",
+            "designerId": "ce11e500-6417-4d2d-805c-08d3f2083382"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "gMap",
+                    "loc",
+                    "title",
+                    "desc",
+                    "callback",
+                    "scope"
+                ],
+                "fn": "centerMap",
+                "implHandler": [
+                    " if(loc != null) {",
+                    "     gMap.setCenter(loc);",
+                    "     this.plotLocation(gMap, loc, title, desc);",
+                    " } else {",
+                    "     navigator.geolocation.getCurrentPosition(function(position) {",
+                    "         var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);",
+                    "         gMap.setCenter(initialLocation);",
+                    "         callback.call(scope, initialLocation);",
+                    "     }, function() {",
+                    "         Ext.Msg.alert(\"Error\", \"Could not get your position.<br />Try enabling your GPS.\");",
+                    "     });",
+                    " }"
+                ]
+            },
+            "name": "centerMap",
+            "designerId": "267cc686-97c7-41cd-b8ed-e6f776a6dfce"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "address",
+                    "callback"
+                ],
+                "fn": "geoCodeAddress",
+                "implHandler": [
+                    "var geocoder = new google.maps.Geocoder();",
+                    "",
+                    "geocoder.geocode({",
+                    "    'address' : address",
+                    "}, function(results, status) {",
+                    "    if(status != google.maps.GeocoderStatus.OK) {",
+                    "        Ext.Msg.alert(\"Address not found\", status);",
+                    "    } else {",
+                    "        callback(results[0].geometry.location, results[0].formatted_address);",
+                    "    }",
+                    "});"
+                ]
+            },
+            "name": "geoCodeAddress",
+            "designerId": "6feffadb-dd87-4e55-80ef-639fbfcbfa70"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "address"
+                ],
+                "fn": "geoCodeAddressRet",
+                "implHandler": [
+                    "  var geocoder = new google.maps.Geocoder();",
+                    "",
+                    "geocoder.geocode({",
+                    "    'address' : address",
+                    "}, function(results, status) {",
+                    "    if(status != google.maps.GeocoderStatus.OK) {",
+                    "        Ext.Msg.alert(\"Address not found\", status);",
+                    "    } else {",
+                    "        return [results[0].geometry.location.lat(), results[0].geometry.location.lng()];",
+                    "    }",
+                    "});"
+                ]
+            },
+            "name": "geoCodeAddressRet",
+            "designerId": "b0900cb4-3b9e-4ec8-a0a7-60b244eae9b0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "objMap",
+                    "pos",
+                    "title",
+                    "content"
+                ],
+                "fn": "plotLocation",
+                "implHandler": [
+                    "",
+                    "var marker = new google.maps.Marker({",
+                    "    position : pos,",
+                    "    map : objMap,",
+                    "    title : title",
+                    "});",
+                    "",
+                    "if( typeof content == 'string' && content != '') {",
+                    "    var infoWindow = new google.maps.InfoWindow({",
+                    "        content : content",
+                    "    });",
+                    "    google.maps.event.addListener(marker, 'click', function() {",
+                    "        infoWindow.open(objMap, marker);",
+                    "    });",
+                    "} else if( typeof content == 'function') {",
+                    "",
+                    "    google.maps.event.addListener(marker, 'click', content);",
+                    "}"
+                ]
+            },
+            "name": "plotLocation",
+            "designerId": "b219b648-13b1-4f88-9225-b815fda7861a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "origin",
+                    "destination",
+                    "travelMode",
+                    "callback"
+                ],
+                "fn": "getDirections",
+                "implHandler": [
+                    "var travelModes = [google.maps.TravelMode.DRIVING, google.maps.TravelMode.WALKING, google.maps.TravelMode.BICYCLING];",
+                    "",
+                    "var directionsService = new google.maps.DirectionsService();",
+                    "var request = {",
+                    "    origin : origin,",
+                    "    destination : destination,",
+                    "    travelMode : travelModes[travelMode]",
+                    "};",
+                    "directionsService.route(request, function(response, status) {",
+                    "    if(status == google.maps.DirectionsStatus.OK) {",
+                    "        callback(response);",
+                    "    }",
+                    "});"
+                ]
+            },
+            "name": "getDirections",
+            "designerId": "2eb4d69f-eece-4d39-a283-4d086bfe4c23"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "pos",
+                    "domID"
+                ],
+                "fn": "streetView",
+                "implHandler": [
+                    "var panoramaOptions = {",
+                    "    position : pos,",
+                    "    pov : {",
+                    "        heading : 34,",
+                    "        pitch : 10,",
+                    "        zoom : 1",
+                    "    }",
+                    "};",
+                    "var panorama = new google.maps.StreetViewPanorama(document.getElementById(domID), panoramaOptions);"
+                ]
+            },
+            "name": "streetView",
+            "designerId": "345a46f8-b2ed-45bd-88d8-53bfe37bf8c9"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback",
+                    "scope",
+                    "bSurpressWarning"
+                ],
+                "fn": "getCurrentPosition",
+                "implHandler": [
+                    "navigator.geolocation.getCurrentPosition(",
+                    "    function(position) {",
+                    "        var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);",
+                    "        callback.call(scope, initialLocation);",
+                    "    }, ",
+                    "    function() {",
+                    "        if(!bSurpressWarning) {",
+                    "            Ext.Msg.alert(\"Error\", \"Could not get your position.\", function() {",
+                    "                callback.call(scope, new google.maps.LatLng(0,0));",
+                    "            });",
+                    "        }",
+                    "    }",
+                    ");"
+                ]
+            },
+            "name": "getCurrentPosition",
+            "designerId": "2ed53371-4009-45e3-a80c-e7bcafd3b96a"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "callback",
+                    "scope"
+                ],
+                "fn": "getCurrentAddress",
+                "implHandler": [
+                    "this.getCurrentPosition(function(latLng) {",
+                    "    var geocoder = new google.maps.Geocoder();",
+                    "    geocoder.geocode({",
+                    "        'latLng' : latLng",
+                    "    }, function(results, status) {",
+                    "        if(status == google.maps.GeocoderStatus.OK) {",
+                    "            callback.call(scope, results);",
+                    "        }",
+                    "    });",
+                    "});"
+                ]
+            },
+            "name": "getCurrentAddress",
+            "designerId": "f5002902-cf2f-437c-9ebb-1b5d5e4fa462"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "addHelperLinkToBody",
+                "implHandler": [
+                    "if (!Ext.get(this.getLinkId())) {",
+                    "    Ext.DomHelper.append(",
+                    "        Ext.getBody(),",
+                    "        {",
+                    "            tag: 'a',",
+                    "            style: 'display:none;',",
+                    "            id: this.getLinkId(),",
+                    "            target: '_system'",
+                    "",
+                    "        }",
+                    "    );",
+                    "}"
+                ]
+            },
+            "name": "addHelperLinkToBody",
+            "designerId": "040962f7-cc4f-4df5-a1c3-f0b665f1b127"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "url"
+                ],
+                "fn": "openLinkInNewWindow",
+                "implHandler": [
+                    "this.addHelperLinkToBody();",
+                    "if (Ext.os.is.iOS && Ext.device !== undefined) {",
+                    "    window.open(url, \"_system\"); //_system opens it in Safari",
+                    "    //_self opens in the same window. On iOS, it contains a back button which android doesn't.",
+                    "} else {",
+                    "    var link = Ext.getDom(this.getLinkId()),",
+                    "        clickevent = document.createEvent('Event');",
+                    "",
+                    "    link.href = url;",
+                    "",
+                    "    clickevent.initEvent('click', true, false);",
+                    "    link.dispatchEvent(clickevent);",
+                    "}"
+                ]
+            },
+            "name": "openLinkInNewWindow",
+            "designerId": "1196288c-9bc0-4166-89f0-6bea0b6e5d2d"
+        }
+    ]
+}

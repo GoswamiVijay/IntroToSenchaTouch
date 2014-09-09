@@ -1,0 +1,65 @@
+{
+    "name": "CitySearch2",
+    "settings": {
+        "cmd": {
+            "license": "commercial",
+            "cmdVersion": "5.0.2.250",
+            "frameworkVersion": "2.3.1.410"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "iPhone",
+                "builtIn": true,
+                "height": 480,
+                "width": 320
+            },
+            "viewportOrientation": "portrait"
+        },
+        "urlPrefix": "http://localhost:1841",
+        "exportPath": "",
+        "spacesToIndent": 4,
+        "sdkPath": "",
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "projectHasEnabledWebServer": true,
+        "lastBuildSelection": {
+            "value": "emulate",
+            "display": "Native Build & Emulate"
+        }
+    },
+    "xdsVersion": "3.1.0",
+    "xdsBuild": 1851,
+    "schemaVersion": 1,
+    "upgradeVersion": 300000000007,
+    "framework": "touch23",
+    "viewOrderMap": {
+        "view": [
+            "2426cbde-7c68-4699-88ad-4df736a55a64",
+            "afc48a77-8a60-4f7b-abcd-a4f4267c5278",
+            "3c9a0dea-4c2f-4d87-ab58-9101c5c358e9",
+            "9925ecf2-98dc-4623-8749-47de91b8d30f"
+        ],
+        "store": [
+            "45079993-af28-4790-b197-ae55986c4e6d",
+            "b38220aa-428d-4ee0-a14a-a490fe891df7",
+            "2d06c577-9323-4e53-a354-3ce02def702d"
+        ],
+        "controller": [
+            "3c35e2f2-489f-4bb9-a033-fb7cf3590853"
+        ],
+        "model": [
+            "7b4937bd-da11-4416-9c0e-bae0a69900b2"
+        ],
+        "resource": [
+            "2e12f76d-22ec-41e8-83d5-811b997157b6",
+            "6035a596-538a-48ff-8a00-d0f15ccba567",
+            "a9af3ea4-948b-4a28-9a7e-3ea60287d8ec"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}
